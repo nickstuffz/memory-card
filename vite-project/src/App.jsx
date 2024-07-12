@@ -9,6 +9,7 @@ function App() {
     <>
       <Header data={data} />
       <Grid data={data} setData={setData} />
+      
       <p>{data.allData[2]}</p>
     </>
   );

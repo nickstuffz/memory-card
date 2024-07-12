@@ -1,0 +1,22 @@
+APP->
+    Header
+        Title
+        Scoreboard
+            -Score
+            -High Score
+    Grid
+        Cards
+
+How to keep track of what has already been selected?
+
+Fetch items from API
+
+State is all objects in array
+
+Onclick of card
+    if missing -> gameover
+    if there -> remove from array
+    if array now empty -> end game
+
+Render from state array, in random order
+
