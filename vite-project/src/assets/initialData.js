@@ -6,7 +6,8 @@ function getRandomIntInclusive(min, max) {
   return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
 }
 
-async function fetchPokemonData() {
+async function fetchPokemonIDs() {
+  // fetch species object from api, just to get total species count
   const response = await fetch(
     "https://pokeapi.co/api/v2/pokemon-species?limit=1",
     {
@@ -14,17 +15,27 @@ async function fetchPokemonData() {
     },
   );
 
+  // unpack species object to get count
   const pokeData = await response.json();
   const pokeCount = pokeData.count;
 
-  let rando = getRandomIntInclusive(1, pokeCount);
+  // create randomized selection of pokemon species ID
+  // *FUTURE FEATURE let user set pokeAmount (2x2 / 3x3 / 4x4 / 5x5)
+  let pokeAmount = 9;
+  let pokeArray = [];
+  for (let i = 0; i < pokeAmount; i++) {
+    let randomPokeId = getRandomIntInclusive(1, pokeCount);
+    if (pokeArray.includes(randomPokeId)) {
+      i--;
+      continue;
+    }
+    pokeArray.push(randomPokeId);
+  }
 
-  // next, assemble into array of 9 (3x3 grid), no repeats
-
-  console.log(rando);
+  console.log(pokeArray);
 }
 
-fetchPokemonData();
+fetchPokemonIDs();
 
 const initialData = {
   allData: {
