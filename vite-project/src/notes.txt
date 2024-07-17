@@ -20,3 +20,13 @@ Onclick of card
 
 Render from state array, in random order
 
+what is the desired array format?
+
+[
+    {
+        "id": 323,
+        "name": "pokesaur",
+        "sprite": "somethingsomething.svg"
+    }
+
+]

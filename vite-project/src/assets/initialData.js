@@ -1,13 +1,11 @@
-// I need an array of 16 unique Pokemon, both names and sprites
-let pokeIdArray = [];
-
+// utility
 function getRandomIntInclusive(min, max) {
   const minCeiled = Math.ceil(min);
   const maxFloored = Math.floor(max);
   return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
 }
 
-// fetches pokemon species promise
+// fetches pokemon species
 async function fetchPokemonSpecies() {
   const response = await fetch(
     "https://pokeapi.co/api/v2/pokemon-species?limit=1",
@@ -15,40 +13,53 @@ async function fetchPokemonSpecies() {
       mode: "cors",
     },
   );
-  return response.json();
+  const species = response.json();
+  return species;
 }
 
-// fetches pokemon promise with given id
-async function fetchPokemon(id) {
-  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`, {
-    mode: "cors",
-  });
-  return response.json();
-}
-
+// calculates pokemon species count
 async function getPokemonSpeciesCount(speciesPromise) {
   const speciesObject = await speciesPromise;
   const speciesCount = speciesObject.count;
   return speciesCount;
 }
 
+// fetches pokemon with given id
+async function fetchPokemon(id) {
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`, {
+    mode: "cors",
+  });
+  const pokemon = response.json();
+  return pokemon;
+}
+
+// creates pokemon data array
+async function newPokemonArray(speciesCountPromise) {
+  const speciesCount = await speciesCountPromise;
+
+  let pokeIdArray = [];
+  let pokeAmount = 9;
+  for (let i = 0; i < pokeAmount; i++) {
+    let randomPokeId = getRandomIntInclusive(1, speciesCount);
+    if (pokeIdArray.includes(randomPokeId)) {
+      i--;
+      continue;
+    }
+    // XX instead of pushing create your desired array (notes.txt)
+    pokeIdArray.push(randomPokeId);
+  }
+  return pokeIdArray;
+}
+
 async function check() {
-  let test = await getPokemonSpeciesCount(fetchPokemonSpecies());
+  let species = fetchPokemonSpecies();
+  let speciesCount = getPokemonSpeciesCount(species);
+  let pokeIdArray = newPokemonArray(speciesCount);
+  let test = await pokeIdArray;
   console.log(test);
 }
 
 check();
-// // create randomized selection of pokemon species ID
-// // *FUTURE FEATURE let user set pokeAmount (2x2 / 3x3 / 4x4 / 5x5)
-// let pokeAmount = 9;
-// for (let i = 0; i < pokeAmount; i++) {
-//   let randomPokeId = getRandomIntInclusive(1, speciesCount);
-//   if (pokeIdArray.includes(randomPokeId)) {
-//     i--;
-//     continue;
-//   }
-//   pokeIdArray.push(randomPokeId);
-// }
 
 function initializeData() {}
 
