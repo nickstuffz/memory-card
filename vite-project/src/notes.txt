@@ -28,5 +28,12 @@ what is the desired array format?
         "name": "pokesaur",
         "sprite": "somethingsomething.svg"
     }
+    {
+        "id: 231,
+        "name": "potatoplant",
+        "sprite": "sweetato.svg"
+    }
 
 ]
+
+-sort through let vs const

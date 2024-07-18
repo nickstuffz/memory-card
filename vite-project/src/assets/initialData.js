@@ -37,18 +37,39 @@ async function fetchPokemon(id) {
 async function newPokemonArray(speciesCountPromise) {
   const speciesCount = await speciesCountPromise;
 
-  let pokeIdArray = [];
-  let pokeAmount = 9;
-  for (let i = 0; i < pokeAmount; i++) {
-    let randomPokeId = getRandomIntInclusive(1, speciesCount);
-    if (pokeIdArray.includes(randomPokeId)) {
+  const pokemonArray = [];
+
+  // allow user set to this amount in future
+  const pokemonAmount = 9;
+
+  // catches an unlikely error
+  if (speciesCount < pokemonAmount) {
+    console.log("error");
+    return;
+  }
+
+  for (let i = 0; i < pokemonAmount; i++) {
+    const randomPokeID = getRandomIntInclusive(1, speciesCount);
+
+    // starts over if repeat ID selected
+    const repeat = (pokemonObject) => pokemonObject.id === randomPokeID;
+    if (pokemonArray.some(repeat)) {
       i--;
       continue;
     }
-    // XX instead of pushing create your desired array (notes.txt)
-    pokeIdArray.push(randomPokeId);
+
+    const pokemon = await fetchPokemon(randomPokeID);
+
+    const nextPokemon = {
+      id: randomPokeID,
+      name: pokemon.name,
+      sprite: pokemon.sprites.front_default,
+    };
+
+    // implement rest of object
+    pokemonArray.push(nextPokemon);
   }
-  return pokeIdArray;
+  return pokemonArray;
 }
 
 async function check() {
@@ -61,7 +82,7 @@ async function check() {
 
 check();
 
-function initializeData() {}
+// function initializeData() {}
 
 const initialData = {
   allData: {
