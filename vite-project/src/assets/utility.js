@@ -19,8 +19,8 @@ async function fetchPokemonSpecies() {
 
 // calculates pokemon species count
 async function getPokemonSpeciesCount(speciesPromise) {
-  const speciesObject = await speciesPromise;
-  const speciesCount = speciesObject.count;
+  const species = await speciesPromise;
+  const speciesCount = species.count;
   return speciesCount;
 }
 
@@ -66,7 +66,6 @@ async function newPokemonArray(speciesCountPromise) {
       sprite: pokemon.sprites.front_default,
     };
 
-    // implement rest of object
     pokemonArray.push(nextPokemon);
   }
   return pokemonArray;
@@ -74,9 +73,9 @@ async function newPokemonArray(speciesCountPromise) {
 
 // test function
 async function getPokemonArray() {
-  let species = fetchPokemonSpecies();
-  let speciesCount = getPokemonSpeciesCount(species);
-  let pokemonArray = await newPokemonArray(speciesCount);
+  let speciesPromise = fetchPokemonSpecies();
+  let speciesCountPromise = getPokemonSpeciesCount(speciesPromise);
+  let pokemonArray = await newPokemonArray(speciesCountPromise);
 
   return pokemonArray;
 }
