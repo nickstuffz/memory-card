@@ -1,4 +1,5 @@
-function Header() {
+function Header(data) {
+  console.log(data);
   return (
     <>
       <h1>header</h1>

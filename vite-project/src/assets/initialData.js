@@ -72,25 +72,13 @@ async function newPokemonArray(speciesCountPromise) {
   return pokemonArray;
 }
 
-async function check() {
+// test function
+async function getPokemonArray() {
   let species = fetchPokemonSpecies();
   let speciesCount = getPokemonSpeciesCount(species);
-  let pokeIdArray = newPokemonArray(speciesCount);
-  let test = await pokeIdArray;
-  console.log(test);
+  let pokemonArray = await newPokemonArray(speciesCount);
+
+  return pokemonArray;
 }
 
-check();
-
-// function initializeData() {}
-
-const initialData = {
-  allData: {
-    0: "apple",
-    1: "banana",
-    2: "orange",
-  },
-  selectedData: {},
-};
-
-export default initialData;
+export default getPokemonArray;

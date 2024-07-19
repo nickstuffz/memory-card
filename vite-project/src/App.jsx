@@ -1,16 +1,25 @@
-import { useState } from "react";
-import initialData from "./assets/initialData.js";
+import { useState, useEffect } from "react";
+import getPokemonArray from "./assets/initialData.js";
 import Header from "./components/Header.jsx";
 import Grid from "./components/Grid.jsx";
 
 function App() {
-  const [data, setData] = useState(initialData);
+  const [pokemonArray, setPokemonArray] = useState([]);
+
+  useEffect(() => {
+    const updatePokemonArray = async () => {
+      const result = await getPokemonArray();
+      setPokemonArray(result);
+    };
+    updatePokemonArray();
+  }, []);
+
   return (
     <>
-      <Header data={data} />
-      <Grid data={data} setData={setData} />
-      
-      <p>{data.allData[2]}</p>
+      <Header data={pokemonArray} />
+      <Grid data={pokemonArray} setData={setPokemonArray} />
+
+      <p></p>
     </>
   );
 }
