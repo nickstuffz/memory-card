@@ -3,6 +3,8 @@ import getPokemonArray from "./assets/utility.js";
 import Header from "./components/Header.jsx";
 import Grid from "./components/Grid.jsx";
 
+// consider adding initial state array with loading elements
+
 function App() {
   const [pokemonArray, setPokemonArray] = useState([]);
 
@@ -23,8 +25,8 @@ function App() {
 
   return (
     <>
-      <Header data={pokemonArray} />
-      <Grid data={pokemonArray} setData={setPokemonArray} />
+      <Header pokemonArray={pokemonArray} />
+      <Grid pokemonArray={pokemonArray} setData={setPokemonArray} />
 
       <p></p>
     </>

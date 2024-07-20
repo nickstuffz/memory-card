@@ -76,7 +76,6 @@ async function getPokemonArray() {
   let speciesPromise = fetchPokemonSpecies();
   let speciesCountPromise = getPokemonSpeciesCount(speciesPromise);
   let pokemonArray = await newPokemonArray(speciesCountPromise);
-
   return pokemonArray;
 }
 

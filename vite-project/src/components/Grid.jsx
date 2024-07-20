@@ -3,7 +3,15 @@ import Card from "./Card";
 function Grid() {
   return (
     <>
-      <h1>grid</h1>
+      <h1>Grid</h1>
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
       <Card />
     </>
   );
