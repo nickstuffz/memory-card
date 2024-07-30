@@ -7,36 +7,13 @@ APP->
     Grid
         Cards
 
-How to keep track of what has already been selected?
-
-Fetch items from API
-
-State is all objects in array
 
 Onclick of card
     if missing -> gameover
     if there -> remove from array
     if array now empty -> end game
 
-Render from state array, in random order
 
-what is the desired array format?
-
-[
-    {
-        "id": 323,
-        "name": "pokesaur",
-        "sprite": "somethingsomething.svg"
-    }
-    {
-        "id: 231,
-        "name": "potatoplant",
-        "sprite": "sweetato.svg"
-    }
-
-]
-
--sort through let vs const
 
 function outerFunction() {
     let array = [];
@@ -66,5 +43,51 @@ useEffect(() => {
   fetchData();
 }, [someId]); // Or [] if effect doesn't need props or state
 
-
-CHECK syntax of files
+pokemonArray example output = 
+[
+    {
+        "id": 931,
+        "name": "squawkabilly",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/931.png"
+    },
+    {
+        "id": 863,
+        "name": "perrserker",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/863.png"
+    },
+    {
+        "id": 946,
+        "name": "bramblin",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/946.png"
+    },
+    {
+        "id": 291,
+        "name": "ninjask",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/291.png"
+    },
+    {
+        "id": 69,
+        "name": "bellsprout",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/69.png"
+    },
+    {
+        "id": 122,
+        "name": "mr-mime",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/122.png"
+    },
+    {
+        "id": 897,
+        "name": "spectrier",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/897.png"
+    },
+    {
+        "id": 1017,
+        "name": "ogerpon",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1017.png"
+    },
+    {
+        "id": 11,
+        "name": "metapod",
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/11.png"
+    }
+]
