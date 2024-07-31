@@ -2,20 +2,15 @@ import Card from "./Card";
 
 function Grid({ pokemonArray }) {
   console.log(pokemonArray);
-  console.log(pokemonArray[0].name);
+
+  const cardGrid = pokemonArray.map((pokemon) => (
+    <Card pokemon={pokemon} key={pokemon.id} />
+  ));
+
   return (
-    <>
-      <h1>Grid</h1>
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-    </>
+    <div id="grid-container" className="grid grid-cols-3">
+      {cardGrid}
+    </div>
   );
 }
 

@@ -1,8 +1,9 @@
-function Card() {
+function Card({ pokemon }) {
   return (
-    <>
-      <h1>Card,</h1>
-    </>
+    <div className="border-2">
+      <img src={pokemon.sprite} alt={pokemon.name} />
+      <p>{pokemon.name}</p>
+    </div>
   );
 }
 
