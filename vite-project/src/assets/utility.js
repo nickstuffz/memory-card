@@ -62,7 +62,7 @@ async function newPokemonArray(speciesCountPromise) {
 
     const nextPokemon = {
       id: randomPokeID,
-      name: pokemon.name,
+      name: pokemon.species.name,
       sprite: pokemon.sprites.front_default,
     };
 
