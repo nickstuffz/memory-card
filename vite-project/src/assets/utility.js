@@ -64,6 +64,7 @@ async function newPokemonArray(speciesCountPromise) {
       id: randomPokeID,
       name: pokemon.species.name,
       sprite: pokemon.sprites.front_default,
+      clicked: false,
     };
 
     pokemonArray.push(nextPokemon);
