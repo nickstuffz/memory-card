@@ -1,10 +1,10 @@
 import Card from "./Card";
 
-function Grid({ pokemonArray }) {
+function Grid({ pokemonArray, onCardClick }) {
   console.log(pokemonArray);
 
   const cardGrid = pokemonArray.map((pokemon) => (
-    <Card pokemon={pokemon} key={pokemon.id} />
+    <Card pokemon={pokemon} key={pokemon.id} onCardClick={onCardClick} />
   ));
 
   return (

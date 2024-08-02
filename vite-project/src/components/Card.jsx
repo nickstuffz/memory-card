@@ -1,6 +1,9 @@
-function Card({ pokemon }) {
+function Card({ pokemon, onCardClick }) {
   return (
-    <div className="border-2">
+    <div
+      className="flex flex-col items-center border-2"
+      onClick={() => onCardClick(pokemon)}
+    >
       <img src={pokemon.sprite} alt={pokemon.name} />
       <p>{pokemon.name}</p>
     </div>

@@ -27,10 +27,19 @@ function App() {
   // will be unnecessary once loading array set
   if (pokemonArray.length === 0) return null;
 
+  function handleCardClick(pokemon) {
+    // check if pokemon already clicked, if yes end game
+    // otherwise change clicked object key to true
+    // shuffle pokemonArray then set state
+    // pretty sure this function should be on APP level
+    // -needs to accesss pokemonArray and set state
+    console.log(pokemon);
+  }
+
   return (
     <>
       <Header pokemonArray={pokemonArray} />
-      <Grid pokemonArray={pokemonArray} setData={setPokemonArray} />
+      <Grid pokemonArray={pokemonArray} onCardClick={handleCardClick} />
 
       <p></p>
     </>
