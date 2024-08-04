@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import getPokemonArray from "./assets/utility.js";
+import { getPokemonArray, fisherYatesShuffle } from "./assets/utility.js";
 import Header from "./components/Header.jsx";
 import Grid from "./components/Grid.jsx";
 
@@ -30,11 +30,13 @@ function App() {
   function handleCardClick(pokemon, index) {
     // check if pokemon already clicked, if yes end game
     if (pokemon.clicked === true) {
+      // update high score
+      // restart game
       alert("game over");
     }
 
     // otherwise change clicked object key to true
-    const nextPokemonArray = pokemonArray.map((p, i) => {
+    let nextPokemonArray = pokemonArray.map((p, i) => {
       if (i === index) {
         return { ...pokemon, clicked: true };
       } else {
@@ -43,12 +45,11 @@ function App() {
     });
 
     // shuffle pokemonArray then set state
-    // pretty sure this function should be on APP level
-    // -needs to accesss pokemonArray and set state
+    nextPokemonArray = fisherYatesShuffle(nextPokemonArray);
+    setPokemonArray(nextPokemonArray);
 
     console.log(index, pokemon);
     console.log(nextPokemonArray);
-    setPokemonArray(nextPokemonArray);
   }
 
   return (

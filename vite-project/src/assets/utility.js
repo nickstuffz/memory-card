@@ -5,6 +5,17 @@ function getRandomIntInclusive(min, max) {
   return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
 }
 
+function fisherYatesShuffle(array) {
+  let oldElement;
+  for (let i = array.length - 1; i > 0; i--) {
+    let rand = Math.floor(Math.random() * (i + 1));
+    oldElement = array[i];
+    array[i] = array[rand];
+    array[rand] = oldElement;
+  }
+  return array;
+}
+
 // fetches pokemon species
 async function fetchPokemonSpecies() {
   const response = await fetch(
@@ -80,4 +91,4 @@ async function getPokemonArray() {
   return pokemonArray;
 }
 
-export default getPokemonArray;
+export { getPokemonArray, fisherYatesShuffle };
