@@ -1,8 +1,6 @@
 import Card from "./Card";
 
 function Grid({ pokemonArray, onCardClick }) {
-  console.log(pokemonArray);
-
   const cardGrid = pokemonArray.map((p, i) => (
     <Card key={p.id} pokemon={p} index={i} onCardClick={onCardClick} />
   ));

@@ -7,6 +7,8 @@ import Grid from "./components/Grid.jsx";
 
 function App() {
   const [pokemonArray, setPokemonArray] = useState([]);
+  const [score, setScore] = useState(0);
+  const [highScore, setHighScore] = useState(0);
 
   useEffect(
     () => {
@@ -30,12 +32,24 @@ function App() {
   function handleCardClick(pokemon, index) {
     // check if pokemon already clicked, if yes end game
     if (pokemon.clicked === true) {
-      // update high score
-      // restart game
-      alert("game over");
-    }
+      alert(`GAME OVER! You scored ${score}`);
 
-    // otherwise change clicked object key to true
+      // set high score
+      if (score > highScore) {
+        setHighScore(score);
+      }
+
+      // restart game
+      setScore(0);
+      let clearedPokemonArray = pokemonArray.map((p) => {
+        return { ...p, clicked: false };
+      });
+      setPokemonArray(clearedPokemonArray);
+
+      return;
+    }
+    // otherwise
+    // change clicked object key to true
     let nextPokemonArray = pokemonArray.map((p, i) => {
       if (i === index) {
         return { ...pokemon, clicked: true };
@@ -44,17 +58,17 @@ function App() {
       }
     });
 
+    // set score
+    setScore(nextPokemonArray.filter((p) => p.clicked === true).length);
+
     // shuffle pokemonArray then set state
     nextPokemonArray = fisherYatesShuffle(nextPokemonArray);
     setPokemonArray(nextPokemonArray);
-
-    console.log(index, pokemon);
-    console.log(nextPokemonArray);
   }
 
   return (
     <>
-      <Header pokemonArray={pokemonArray} />
+      <Header pokemonArray={pokemonArray} score={score} highScore={highScore} />
       <Grid pokemonArray={pokemonArray} onCardClick={handleCardClick} />
 
       <p></p>
