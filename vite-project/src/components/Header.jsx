@@ -13,6 +13,3 @@ function Header({ pokemonArray, score, highScore }) {
 }
 
 export default Header;
-
-// Header should display title
-// score out of 10, high score

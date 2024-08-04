@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react";
-import { getPokemonArray, fisherYatesShuffle } from "./assets/utility.js";
+import {
+  getPokemonArray,
+  fisherYatesShuffle,
+  initialPokemonArray,
+} from "./assets/utility.js";
 import Header from "./components/Header.jsx";
 import Grid from "./components/Grid.jsx";
 
 // consider adding initial state array with loading elements
 
 function App() {
-  const [pokemonArray, setPokemonArray] = useState([]);
+  const [pokemonArray, setPokemonArray] = useState(initialPokemonArray);
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
 
@@ -24,10 +28,6 @@ function App() {
       // currently runs on mount, add dependency to add reset and edit features
     ],
   );
-
-  // is there a better way to abort running the intialState of []?
-  // will be unnecessary once loading array set
-  if (pokemonArray.length === 0) return null;
 
   function handleCardClick(pokemon, index) {
     // check if pokemon already clicked, if yes end game
