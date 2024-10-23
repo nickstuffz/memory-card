@@ -64,7 +64,7 @@ async function newPokemonArray(speciesCountPromise) {
   // allow user set to this amount in future
   const pokemonAmount = 9;
 
-  // catches an unlikely error
+  // prevents an unlikely error
   if (speciesCount < pokemonAmount) {
     console.log("error");
     return;

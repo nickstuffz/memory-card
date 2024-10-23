@@ -6,6 +6,7 @@ import {
 } from "./assets/utility.js";
 import Header from "./components/Header.jsx";
 import Grid from "./components/Grid.jsx";
+import Menu from "./components/Menu.jsx";
 
 // consider adding initial state array with loading elements
 
@@ -13,21 +14,23 @@ function App() {
   const [pokemonArray, setPokemonArray] = useState(initialPokemonArray);
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
+  const [reset, setReset] = useState(false);
 
-  useEffect(
-    () => {
-      const effectGetPokemonArray = async () => {
-        const result = await getPokemonArray();
-        setPokemonArray(result);
-      };
-      effectGetPokemonArray();
+  useEffect(() => {
+    const effectGetPokemonArray = async () => {
+      const result = await getPokemonArray();
+      setPokemonArray(result);
+    };
+    effectGetPokemonArray();
 
-      // add cleanup function, remove API fetch using controller, abort
-    },
-    [
-      // currently runs on mount, add dependency to add reset and edit features
-    ],
-  );
+    setReset(false);
+    console.log("reset false");
+
+    // add cleanup function, remove API fetch using controller, abort
+  }, [
+    reset,
+    // currently runs on mount, add dependency to add reset and edit features
+  ]);
 
   function handleCardClick(pokemon, index) {
     // check if pokemon already clicked, if yes end game
@@ -66,12 +69,18 @@ function App() {
     setPokemonArray(nextPokemonArray);
   }
 
+  function handleResetClick() {
+    setReset(true);
+    console.log("reset true");
+    return;
+  }
+
   return (
     <>
       <Header pokemonArray={pokemonArray} score={score} highScore={highScore} />
       <Grid pokemonArray={pokemonArray} onCardClick={handleCardClick} />
 
-      <p></p>
+      <Menu onResetClick={handleResetClick} />
     </>
   );
 }

@@ -6,3 +6,9 @@ APP->
             -High Score
     Grid
         Cards
+
+- no internet connection -> alt text shows
+- download the pokeball sprite so it can "load" offline
+- catch console errors for fetch when offline (all of them)
+
+- check reset button
