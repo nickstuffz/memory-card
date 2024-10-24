@@ -2,8 +2,7 @@ import Card from "./Card";
 
 function Grid() {
   return (
-    <>
-      <h1>Grid</h1>
+    <div className="grid grid-cols-3">
       <Card />
       <Card />
       <Card />
@@ -13,7 +12,7 @@ function Grid() {
       <Card />
       <Card />
       <Card />
-    </>
+    </div>
   );
 }
 
