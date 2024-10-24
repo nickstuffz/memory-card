@@ -1,9 +1,5 @@
 import { useState, useEffect } from "react";
-import {
-  getPokemonArray,
-  fisherYatesShuffle,
-  initialPokemonArray,
-} from "./assets/utility.js";
+import { getPokemonArray, fisherYatesShuffle } from "./assets/utility.js";
 import Header from "./components/Header.jsx";
 import Grid from "./components/Grid.jsx";
 import Menu from "./components/Menu.jsx";
@@ -11,20 +7,20 @@ import Menu from "./components/Menu.jsx";
 // consider adding initial state array with loading elements
 
 function App() {
-  const [pokemonArray, setPokemonArray] = useState(initialPokemonArray);
+  const [pokemonArray, setPokemonArray] = useState([]);
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
-  const [reset, setReset] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [reset, setReset] = useState(0);
 
   useEffect(() => {
     const effectGetPokemonArray = async () => {
+      setIsLoading(true);
       const result = await getPokemonArray();
       setPokemonArray(result);
+      setIsLoading(false);
     };
     effectGetPokemonArray();
-
-    setReset(false);
-    console.log("reset false");
 
     // add cleanup function, remove API fetch using controller, abort
   }, [
@@ -47,7 +43,7 @@ function App() {
       let clearedPokemonArray = pokemonArray.map((p) => {
         return { ...p, clicked: false };
       });
-      setPokemonArray(clearedPokemonArray);
+      setPokemonArray(fisherYatesShuffle(clearedPokemonArray));
 
       return;
     }
@@ -70,15 +66,20 @@ function App() {
   }
 
   function handleResetClick() {
-    setReset(true);
-    console.log("reset true");
+    let nextReset = reset + 1;
+    setReset(nextReset);
+    console.log(nextReset);
     return;
   }
 
   return (
     <>
       <Header pokemonArray={pokemonArray} score={score} highScore={highScore} />
-      <Grid pokemonArray={pokemonArray} onCardClick={handleCardClick} />
+      <Grid
+        pokemonArray={pokemonArray}
+        onCardClick={handleCardClick}
+        isLoading={isLoading}
+      />
 
       <Menu onResetClick={handleResetClick} />
     </>

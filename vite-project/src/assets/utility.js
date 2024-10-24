@@ -16,17 +16,6 @@ function fisherYatesShuffle(array) {
   return array;
 }
 
-// initialPokemonArray loading
-const initialPokemonArray = [
-  {
-    name: "loading",
-    id: "loading",
-    sprite:
-      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png",
-    clicked: false,
-  },
-];
-
 // fetches pokemon species
 async function fetchPokemonSpecies() {
   const response = await fetch(
@@ -102,4 +91,4 @@ async function getPokemonArray() {
   return pokemonArray;
 }
 
-export { getPokemonArray, fisherYatesShuffle, initialPokemonArray };
+export { getPokemonArray, fisherYatesShuffle };
