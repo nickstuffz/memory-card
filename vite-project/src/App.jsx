@@ -10,7 +10,7 @@ function App() {
   const [pokemonArray, setPokemonArray] = useState([]);
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [reset, setReset] = useState(0);
 
   useEffect(() => {
@@ -47,22 +47,31 @@ function App() {
 
       return;
     }
+
     // otherwise
     // change clicked object key to true
-    let nextPokemonArray = pokemonArray.map((p, i) => {
-      if (i === index) {
-        return { ...pokemon, clicked: true };
+    else {
+      if (score === pokemonArray.length - 1) {
+        alert(`You Won! You scored all available points!`);
+        handleResetClick();
+        return;
       } else {
-        return p;
+        let nextPokemonArray = pokemonArray.map((p, i) => {
+          if (i === index) {
+            return { ...pokemon, clicked: true };
+          } else {
+            return p;
+          }
+        });
+
+        // set score
+        setScore(nextPokemonArray.filter((p) => p.clicked === true).length);
+
+        // shuffle pokemonArray then set state
+        nextPokemonArray = fisherYatesShuffle(nextPokemonArray);
+        setPokemonArray(nextPokemonArray);
       }
-    });
-
-    // set score
-    setScore(nextPokemonArray.filter((p) => p.clicked === true).length);
-
-    // shuffle pokemonArray then set state
-    nextPokemonArray = fisherYatesShuffle(nextPokemonArray);
-    setPokemonArray(nextPokemonArray);
+    }
   }
 
   function handleResetClick() {
