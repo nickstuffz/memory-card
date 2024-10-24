@@ -23,12 +23,12 @@ function App() {
     ],
   );
 
-  console.log(pokemonArray);
-
   return (
     <>
       <Header pokemonArray={pokemonArray} />
       <Grid pokemonArray={pokemonArray} setData={setPokemonArray} />
+
+      <p></p>
     </>
   );
 }
