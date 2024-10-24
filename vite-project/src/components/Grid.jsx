@@ -1,19 +1,14 @@
 import Card from "./Card";
 
-function Grid() {
+function Grid({ pokemonArray, onCardClick }) {
+  const cardGrid = pokemonArray.map((p, i) => (
+    <Card key={p.id} pokemon={p} index={i} onCardClick={onCardClick} />
+  ));
+
   return (
-    <>
-      <h1>Grid</h1>
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-    </>
+    <div id="grid-container" className="grid grid-cols-3">
+      {cardGrid}
+    </div>
   );
 }
 

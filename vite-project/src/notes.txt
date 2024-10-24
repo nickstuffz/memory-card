@@ -7,64 +7,8 @@ APP->
     Grid
         Cards
 
-How to keep track of what has already been selected?
+- no internet connection -> alt text shows
+- download the pokeball sprite so it can "load" offline
+- catch console errors for fetch when offline (all of them)
 
-Fetch items from API
-
-State is all objects in array
-
-Onclick of card
-    if missing -> gameover
-    if there -> remove from array
-    if array now empty -> end game
-
-Render from state array, in random order
-
-what is the desired array format?
-
-[
-    {
-        "id": 323,
-        "name": "pokesaur",
-        "sprite": "somethingsomething.svg"
-    }
-    {
-        "id: 231,
-        "name": "potatoplant",
-        "sprite": "sweetato.svg"
-    }
-
-]
-
--sort through let vs const
-
-function outerFunction() {
-    let array = [];
-
-    async function() {
-        edits array
-    }
-}
-
-useEffect(() => {
-  const getData = async () => {
-    const result = await fetch(someUrl);
-    const data = await result.json();
-    setSomeState(data);
-  };
-  getData();
-}, []);
-
-
-
-useEffect(() => {
-  async function fetchData() {
-    // You can await here
-    const response = await MyAPI.getData(someId);
-    // ...
-  }
-  fetchData();
-}, [someId]); // Or [] if effect doesn't need props or state
-
-
-CHECK syntax of files
+- check reset button

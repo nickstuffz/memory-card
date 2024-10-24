@@ -5,6 +5,28 @@ function getRandomIntInclusive(min, max) {
   return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
 }
 
+function fisherYatesShuffle(array) {
+  let oldElement;
+  for (let i = array.length - 1; i > 0; i--) {
+    let rand = Math.floor(Math.random() * (i + 1));
+    oldElement = array[i];
+    array[i] = array[rand];
+    array[rand] = oldElement;
+  }
+  return array;
+}
+
+// initialPokemonArray loading
+const initialPokemonArray = [
+  {
+    name: "loading",
+    id: "loading",
+    sprite:
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png",
+    clicked: false,
+  },
+];
+
 // fetches pokemon species
 async function fetchPokemonSpecies() {
   const response = await fetch(
@@ -42,7 +64,7 @@ async function newPokemonArray(speciesCountPromise) {
   // allow user set to this amount in future
   const pokemonAmount = 9;
 
-  // catches an unlikely error
+  // prevents an unlikely error
   if (speciesCount < pokemonAmount) {
     console.log("error");
     return;
@@ -62,8 +84,9 @@ async function newPokemonArray(speciesCountPromise) {
 
     const nextPokemon = {
       id: randomPokeID,
-      name: pokemon.name,
+      name: pokemon.species.name,
       sprite: pokemon.sprites.front_default,
+      clicked: false,
     };
 
     pokemonArray.push(nextPokemon);
@@ -79,4 +102,4 @@ async function getPokemonArray() {
   return pokemonArray;
 }
 
-export default getPokemonArray;
+export { getPokemonArray, fisherYatesShuffle, initialPokemonArray };
